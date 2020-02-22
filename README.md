@@ -47,6 +47,8 @@ extern (C) void main() @nogc nothrow {
 
     // indices must be freed.
     earcut.indices.free;
+    p1.free;
+    polygon.free;
     
     // Memory pool of earcut is scoped. no need to free
 }
