@@ -7,7 +7,6 @@ Copyright:
  Copyright (c) 2020, Ferhat Kurtulmuş.
  License:
    $(HTTP www.boost.org/LICENSE_1_0.txt, Boost License 1.0).
-Simplified betterC port of druntime/blob/master/src/rt/aaA.d
 */
 
 module earcut;
