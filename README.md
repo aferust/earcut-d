@@ -4,6 +4,8 @@ D port (betterC) of the [earcut](https://github.com/mapbox/earcut.hpp) polygon t
 
 ## dependencies
  * [dvector](https://github.com/aferust/dvector/)
+
+## Example
 ```d
 import core.stdc.stdlib: free;
 
