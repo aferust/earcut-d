@@ -1,0 +1,29 @@
+{
+    "authors": [
+        "Ferhat Kurtulmuş"
+    ],
+    "copyright": "Copyright © 2020, Ferhat Kurtulmuş",
+    "description": "D port (betterC) of the earcut polygon triangulation library.",
+    "license": "BSL-1.0",
+    "name": "earcut",
+    "version": "0.0.1",
+    "dependencies": {
+        "dvector": "0.0.4"
+    },
+    "dflags": ["-betterC"],
+    "importPaths": ["source"],
+    "sourcePaths": ["source"],
+    "configurations": [
+        {
+            "name": "library",
+            "targetType": "library",
+            "sourcePaths": ["source"]
+        },
+        {
+            "name": "import",
+            "targetType": "sourceLibrary",
+            "sourceFiles-posix": ["libearcut.a"],
+            "sourceFiles-windows": ["earcut.lib"]
+        }
+    ]
+}
