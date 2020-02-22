@@ -34,7 +34,7 @@ extern (C) void main() @nogc nothrow {
     polygon.pushBack(p1);
     // polygon.pushBack(p2); // another polygon can be provided for inside holes.
 
-    Earcut!(size_t, Dvector!(Dvector!(Point)), Point) earcut;
+    Earcut!(size_t, Dvector!(Dvector!(Point))) earcut;
 
     earcut.run(polygon);
 

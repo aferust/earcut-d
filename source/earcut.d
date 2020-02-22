@@ -19,13 +19,20 @@ import dvector;
 
 private {
     import core.stdc.stdlib;
+    import std.traits;
     import std.math;
     import std.stdint;
     import std.typecons;
     import std.algorithm.comparison: min, max;
 }
 
-struct Earcut(N, Polygon, Point) {
+struct Earcut(N, Polygon) {
+
+    alias ASeq = TemplateArgsOf!Polygon;
+    alias VecPoint = ASeq[0];
+    alias ASeq2 = TemplateArgsOf!VecPoint;
+    alias Point = ASeq2[0];
+
     Dvector!N indices;
     size_t vertices = 0;
 
