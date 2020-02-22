@@ -41,6 +41,9 @@ extern (C) void main() @nogc nothrow {
     foreach(ref elem; earcut.indices)
         printf("%d\n", elem);
     
+    size_t[6] forAssert = [2, 3, 0, 0, 1, 2];
+    assert(earcut.indices.slice == forAssert);
+
     // indices must be freed.
     earcut.indices.free;
     
