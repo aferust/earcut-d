@@ -21,7 +21,7 @@ extern (C) void main() @nogc nothrow {
     Dvector!(Dvector!(Point)) polygon;
     Dvector!(Point) p1;
 
-    Tuple!(int, int)[4] pp = [tuple(100,0), tuple(100,100), tuple(0,100), tuple(0,0)];
+    Point[4] pp = [tuple(100,0), tuple(100,100), tuple(0,100), tuple(0,0)];
     p1.insert(pp[], 0);
     /*
     or feed your points to dvector dynamically.
