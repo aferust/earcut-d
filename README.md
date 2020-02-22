@@ -11,7 +11,7 @@ import core.stdc.stdlib: free;
 
 import std.typecons;
 
-import earcut;
+import earcutd;
 import dvector;
 
 extern (C) void main() @nogc nothrow {
