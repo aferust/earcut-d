@@ -5,7 +5,7 @@
     "copyright": "Copyright © 2020, Ferhat Kurtulmuş",
     "description": "D port (betterC) of the earcut polygon triangulation library.",
     "license": "BSL-1.0",
-    "name": "earcut",
+    "name": "earcutd",
     "version": "0.0.1",
     "dependencies": {
         "dvector": "0.0.4"

@@ -9,7 +9,7 @@ Copyright:
    $(HTTP www.boost.org/LICENSE_1_0.txt, Boost License 1.0).
 */
 
-module earcut;
+module earcutd;
 
 version(LDC){
     pragma(LDC_no_moduleinfo);
