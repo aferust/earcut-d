@@ -12,6 +12,10 @@ Simplified betterC port of druntime/blob/master/src/rt/aaA.d
 
 module earcut;
 
+version(LDC){
+    pragma(LDC_no_moduleinfo);
+}
+
 import dvector;
 
 private {
