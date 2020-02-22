@@ -12,6 +12,7 @@ import core.stdc.stdlib: free;
 import std.typecons;
 
 import earcut;
+import dvector;
 
 extern (C) void main() @nogc nothrow {
     alias Point = Tuple!(int, int);
