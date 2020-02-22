@@ -3,7 +3,7 @@ dub.selections.json
 docs.json
 __dummy.html
 docs/
-/earcut
+/earcutd
 *.so
 *.dylib
 *.dll

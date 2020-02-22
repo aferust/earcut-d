@@ -22,8 +22,8 @@
         {
             "name": "import",
             "targetType": "sourceLibrary",
-            "sourceFiles-posix": ["libearcut.a"],
-            "sourceFiles-windows": ["earcut.lib"]
+            "sourceFiles-posix": ["libearcutd.a"],
+            "sourceFiles-windows": ["earcutd.lib"]
         }
     ]
 }
