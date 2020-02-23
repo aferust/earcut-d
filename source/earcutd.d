@@ -22,7 +22,6 @@ private {
     import std.traits;
     import std.math;
     import std.stdint;
-    import std.typecons;
     import std.algorithm.comparison: min, max;
 }
 
