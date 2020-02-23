@@ -7,7 +7,6 @@ D port (betterC) of the [earcut](https://github.com/mapbox/earcut.hpp) polygon t
 
 ## Example
 ```d
-import core.stdc.stdlib: free;
 
 import std.typecons;
 
