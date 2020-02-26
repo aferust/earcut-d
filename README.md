@@ -54,7 +54,7 @@ extern (C) void main() @nogc nothrow {
 ```
 ## User defined point types.
 ```d
-/* Examples for user defined point types. Two things are mandotary:
+/* Examples for user defined point types. Two things are mandatory:
    1) coordinates must be indexable.
    2) A 'Point(T x, T y)' must be available using one of struct initializing, a constructor, or a 'Point opCall(...)'.
 */

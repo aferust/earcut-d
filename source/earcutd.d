@@ -134,7 +134,7 @@ struct Earcut(N, Polygon) {
 
         //estimate size of nodes and indices
         nodes.reset(len * 3 / 2);
-        //indices.reserve(len + points[0].length);?????????
+        indices.reserve(len + points[0].length);
 
         Node* outerNode = linkedList(points[0], true);
         if (!outerNode || outerNode.prev == outerNode.next) return;
