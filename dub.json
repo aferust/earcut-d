@@ -8,7 +8,7 @@
     "name": "earcutd",
     "version": "0.0.1",
     "dependencies": {
-        "dvector": "0.0.4"
+        "dvector": "0.0.5"
     },
     "dflags": ["-betterC"],
     "importPaths": ["source"],
