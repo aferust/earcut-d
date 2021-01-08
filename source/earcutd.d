@@ -12,7 +12,9 @@ Copyright:
 module earcutd;
 
 version(LDC){
-    pragma(LDC_no_moduleinfo);
+    version(D_BetterC){
+        pragma(LDC_no_moduleinfo);
+    }
 }
 
 import dvector;
