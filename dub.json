@@ -6,24 +6,21 @@
     "description": "D port (betterC) of the earcut polygon triangulation library.",
     "license": "BSL-1.0",
     "name": "earcutd",
-    "version": "0.0.1",
+    "version": "0.0.2",
     "dependencies": {
         "dvector": "0.0.5"
     },
-    "dflags": ["-betterC"],
     "importPaths": ["source"],
     "sourcePaths": ["source"],
     "configurations": [
         {
-            "name": "library",
-            "targetType": "library",
-            "sourcePaths": ["source"]
+            "name": "default",
+            "targetType": "library"
         },
         {
-            "name": "import",
-            "targetType": "sourceLibrary",
-            "sourceFiles-posix": ["libearcutd.a"],
-            "sourceFiles-windows": ["earcutd.lib"]
+            "name": "betterC",
+            "targetType": "library",
+            "dflags": ["-betterC"]
         }
     ]
 }
