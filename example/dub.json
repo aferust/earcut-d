@@ -1,0 +1,10 @@
+{
+	"authors"     : [ "Vital"],
+	"copyright"   : "Copyright © 2021, Vital",
+	"description" : "A minimal D application.",
+	"license"     : "proprietary",
+	"name"        : "example",
+    "dependencies": {
+        "earcutd": { "path" : ".." }
+    },
+}
