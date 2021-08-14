@@ -13,25 +13,37 @@ import std.typecons;
 import earcutd;
 import dvector;
 
+import core.stdc.stdio;
+
 extern (C) void main() @nogc nothrow {
     alias Point = Tuple!(int, int);
     // you can use your custom point types.
 
     Dvector!(Dvector!(Point)) polygon;
-    Dvector!(Point) p1;
+    Dvector!(Point) points;
+    // Dvector!(Point) hole1, hole2;
 
-    Point[4] pp = [tuple(100,0), tuple(100,100), tuple(0,100), tuple(0,0)];
-    p1.insert(pp[], 0);
+    Point[4] pp = [Point(0,0), Point(0,200), Point(400,200), Point(400,0)];
+    points.insert(pp[], 0);
     /*
     or feed your points to dvector dynamically.
-    p1.pushBack(Point(100,0));
-    p1.pushBack(Point(100,100));
-    p1.pushBack(Point(0,100));
-    p1.pushBack(Point(0,0));
+    points.pushBack(Point(0,0));
+    points.pushBack(Point(0,200));
+    points.pushBack(Point(400,200));
+    points.pushBack(Point(400,0));
     */
 
-    polygon.pushBack(p1);
-    // polygon.pushBack(p2); // another polygon can be provided for inside holes.
+    polygon.pushBack(points); 
+    /+ inside holes can be provided such as
+    Point[4] _hole1 = [Point(50,50), Point(50,150), Point(150,150), Point(150,50)];
+    Point[4] _hole2 = [Point(250,50), Point(250,150), Point(300,150), Point(300,50)];
+    
+    hole1.insert(_hole1[], 0);
+    hole2.insert(_hole2[], 0);
+
+    polygon.pushBack(hole1);
+    polygon.pushBack(hole2);
+    +/
 
     Earcut!(size_t, Dvector!(Dvector!(Point))) earcut;
 
@@ -41,13 +53,34 @@ extern (C) void main() @nogc nothrow {
     foreach(ref elem; earcut.indices)
         printf("%d\n", elem);
     
-    size_t[6] forAssert = [2, 3, 0, 0, 1, 2];
-    assert(earcut.indices.slice == forAssert);
+    /+ if holes exist:
+    import std.range: chain;
+    auto edgeNholes = chain(points, hole1, hole2); // chain does not allocate, which is nice.
+
+    foreach(i; 0 .. earcut.indices.length / 3){
+        printf("Triangle %d: Point1(x: %d, y: %d), Point2(x: %d, y: %d), Point3(x: %d, y: %d) \n", i,
+            edgeNholes[earcut.indices[i*3]][0],
+            edgeNholes[earcut.indices[i*3]][1],
+            edgeNholes[earcut.indices[i*3 + 1]][0],
+            edgeNholes[earcut.indices[i*3 + 1]][1],
+            edgeNholes[earcut.indices[i*3 + 2]][0],
+            edgeNholes[earcut.indices[i*3 + 2]][1]
+        );
+    }
+    +/
+    
+    size_t[6] forAssert = [1, 0, 3, 3, 2, 1];
+    assert(earcut.indices.slice == forAssert[]);
 
     // indices must be freed.
     earcut.indices.free;
-    p1.free;
+    points.free;
     polygon.free;
+
+    /+
+    hole1.free;
+    hole2.free;
+    +/
     
     // Memory pool of earcut is scoped. no need to free
 }
