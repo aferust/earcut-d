@@ -18,8 +18,10 @@ import core.stdc.stdio;
 extern (C) void main() @nogc nothrow {
     alias Point = Tuple!(int, int);
     // you can use your custom point types.
+    // you don't have to use Dvector for your polygon type see below
 
-    Dvector!(Dvector!(Point)) polygon; // or Dvector!(Point[])
+    Dvector!(Dvector!(Point)) polygon; // or Dvector!(Point[]) or Array!(Point[])
+    // using std.container: Array; (it does not allocates if you use array.insertBack(Points[]))
     Dvector!(Point) points; // use a slice or a RandomAccessRange: Point[] points;
     // Dvector!(Point) hole1, hole2;
 
