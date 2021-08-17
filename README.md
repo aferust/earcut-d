@@ -19,8 +19,8 @@ extern (C) void main() @nogc nothrow {
     alias Point = Tuple!(int, int);
     // you can use your custom point types.
 
-    Dvector!(Dvector!(Point)) polygon;
-    Dvector!(Point) points;
+    Dvector!(Dvector!(Point)) polygon; // or Dvector!(Point[])
+    Dvector!(Point) points; // use a slice or a RandomAccessRange: Point[] points;
     // Dvector!(Point) hole1, hole2;
 
     Point[4] pp = [Point(0,0), Point(0,200), Point(400,200), Point(400,0)];

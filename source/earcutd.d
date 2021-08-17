@@ -22,6 +22,8 @@ import dvector;
 private {
     import core.stdc.stdlib;
     import std.traits;
+    import std.traits: isArray;
+    import std.range.primitives: isRandomAccessRange;
     import std.math;
     import std.stdint;
     import std.algorithm.comparison: min, max;
@@ -31,8 +33,14 @@ struct Earcut(N, Polygon) {
 
     alias ASeq = TemplateArgsOf!Polygon;
     alias VecPoint = ASeq[0];
-    alias ASeq2 = TemplateArgsOf!VecPoint;
-    alias Point = ASeq2[0];
+    
+    static if (isArray!VecPoint){
+        alias Point = typeof(VecPoint.init[0]);
+    } else static if (isRandomAccessRange!VecPoint){
+        alias ASeq2 = TemplateArgsOf!VecPoint;
+        alias Point = ASeq2[0];
+    } else
+        static assert(0, typeof(VecPoint).stringof ~ " type is not supported. You must use a slice or a RandomAccessRange");
 
     Dvector!N indices;
     size_t vertices = 0;
