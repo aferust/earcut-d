@@ -2,10 +2,31 @@
 D port (betterC) of the [earcut](https://github.com/mapbox/earcut.hpp) polygon triangulation library.
  * ported from C++ port of a javascript library :D.
 
+# Quick example:
+```d
+    alias Point = Tuple!(int, int);
+
+    Point[4][3] polygon = [[Point(0,0), Point(0,200), Point(400,200), Point(400,0)], // boundary coords
+        [Point(50,50), Point(50,150), Point(150,150), Point(150,50)], // hole 1
+        [Point(250,50), Point(250,150), Point(300,150), Point(300,50)] // hole 2 ...
+    ];
+
+    Earcut!(size_t, Point[4][3]) earcut;
+
+    earcut.run(polygon);
+
+    // earcut.indices is of Dvector!size_t now.
+    foreach(ref elem; earcut.indices)
+        printf("%d\n", elem)
+    
+    earcut.indices.free;
+
+```
+
 ## dependencies
  * [dvector](https://github.com/aferust/dvector/)
 
-## Example
+## Example with dynamic arrays
 ```d
 
 import std.typecons;
@@ -22,7 +43,7 @@ extern (C) void main() @nogc nothrow {
 
     Dvector!(Dvector!(Point)) polygon; // or Dvector!(Point[]) or Array!(Point[])
     /+ using std.container: Array; (it does not allocates if you use array.insertBack(Points[]))
-        However using std.container.Array breaks betterC compatibility.
+        However, using std.container.Array breaks betterC compatibility.
     +/
     Dvector!(Point) points; // use a slice or a RandomAccessRange: Point[] points;
     // Dvector!(Point) hole1, hole2;
