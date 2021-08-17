@@ -31,8 +31,13 @@ private {
 
 struct Earcut(N, Polygon) {
 
-    alias ASeq = TemplateArgsOf!Polygon;
-    alias VecPoint = ASeq[0];
+    static if (isArray!Polygon){
+        alias VecPoint = typeof(Polygon.init[0]);
+    } else static if (isRandomAccessRange!Polygon || __traits(compiles, Polygon.init[0])){
+        alias ASeq = TemplateArgsOf!Polygon;
+        alias VecPoint = ASeq[0];
+    } else
+        static assert(0, typeof(Polygon).stringof ~ " type is not supported.");
     
     static if (isArray!VecPoint){
         alias Point = typeof(VecPoint.init[0]);
