@@ -22,7 +22,6 @@ import dvector;
 private {
     import core.stdc.stdlib;
     import std.traits;
-    import std.traits: isArray;
     import std.range.primitives: isRandomAccessRange;
     import std.math;
     import std.stdint;
@@ -30,6 +29,13 @@ private {
 }
 
 struct Earcut(N, Polygon) {
+
+    @disable this();
+    @disable this(this);
+
+    ~this() {
+        indices.free;
+    }
 
     static if (isArray!Polygon){
         alias VecPoint = typeof(Polygon.init[0]);
@@ -39,7 +45,7 @@ struct Earcut(N, Polygon) {
     } else
         static assert(0, typeof(Polygon).stringof ~ " type is not supported.");
     
-    static if (isArray!VecPoint){
+    static if(__traits(compiles, { VecPoint vp; vp[0]; })){
         alias Point = typeof(VecPoint.init[0]);
     } else static if (isRandomAccessRange!VecPoint){
         alias ASeq2 = TemplateArgsOf!VecPoint;
@@ -132,7 +138,8 @@ struct Earcut(N, Polygon) {
 
     void run(ref Polygon points){
         // reset
-        indices.free;
+        if(!indices.empty)
+            indices.free;
         vertices = 0;
 
         if (!points.length) return;

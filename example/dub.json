@@ -5,6 +5,7 @@
 	"license"     : "proprietary",
 	"name"        : "example",
     "dependencies": {
-        "earcutd": { "path" : ".." }
-    },
+        "earcutd": { "path" : ".." },
+		"dvector" : "*"
+    }
 }

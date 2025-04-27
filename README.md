@@ -11,15 +11,12 @@ D port (betterC) of the [earcut](https://github.com/mapbox/earcut.hpp) polygon t
         [Point(250,50), Point(250,150), Point(300,150), Point(300,50)] // hole 2 ...
     ];
 
-    Earcut!(size_t, Point[4][3]) earcut;
+    auto earcut = Earcut!(size_t, Point[4][3]).init;
 
     earcut.run(polygon);
 
-    // earcut.indices is of Dvector!size_t now.
     foreach(ref elem; earcut.indices)
         printf("%d\n", elem)
-    
-    earcut.indices.free;
 
 ```
 
@@ -70,11 +67,11 @@ extern (C) void main() @nogc nothrow {
     polygon.pushBack(hole2);
     +/
 
-    Earcut!(size_t, Dvector!(Dvector!(Point))) earcut;
+    auto earcut = Earcut!(size_t, Dvector!(Dvector!(Point))).init;
 
     earcut.run(polygon);
 
-    // earcut.indices is of Dvector!size_t now.
+    // access the indices
     foreach(ref elem; earcut.indices)
         printf("%d\n", elem);
     
@@ -97,8 +94,6 @@ extern (C) void main() @nogc nothrow {
     size_t[6] forAssert = [1, 0, 3, 3, 2, 1];
     assert(earcut.indices.slice == forAssert[]);
 
-    // indices must be freed.
-    earcut.indices.free;
     points.free;
     polygon.free;
 
