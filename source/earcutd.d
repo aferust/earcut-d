@@ -45,7 +45,7 @@ struct Earcut(N, Polygon) {
     } else
         static assert(0, typeof(Polygon).stringof ~ " type is not supported.");
     
-    static if(__traits(compiles, { VecPoint vp; vp[0]; })){
+    static if(__traits(compiles, { VecPoint vp; cast(void) vp[0]; })){
         alias Point = typeof(VecPoint.init[0]);
     } else static if (isRandomAccessRange!VecPoint){
         alias ASeq2 = TemplateArgsOf!VecPoint;
